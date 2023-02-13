@@ -13,8 +13,6 @@ import {
   
   import { PatientService } from "../service/patient";
   
-
-  
   @Provide()
   @Controller("/api/patient")
   export class APIControllerpatient {
@@ -28,7 +26,6 @@ import {
     @Get("/list",{ middleware: ['jwtPassportMiddleware'] })
     async getList() {
       const patients = await this.patientService.getAllPatient();
-      
       return { code: 0, message: "OK", data: patients };
     }
 
@@ -51,10 +48,10 @@ import {
       return { code: 0, message: "OK" }
     }
 
-    // @Post("/updata",{ middleware: ['jwtPassportMiddleware'] })
-    // async updatePatient (@Body(ALL) body: any) {
-    //   await this.patientService.updatePatient(body)
-    //   return { code: 0, message: "OK" }
-    // }
+    @Post("/update/:id",{ middleware: ['jwtPassportMiddleware'] })
+    async updatePatient (@Param('id') id: number, @Body(ALL) body: any) {
+      await this.patientService.updatePatient(id, body)
+      return { code: 0, message: "OK" }
+    }
   }
   

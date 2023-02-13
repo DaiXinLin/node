@@ -4,6 +4,7 @@ import {JwtStrategy} from '../strategy/jwt'
 
 @Provide()
 export class JwtPassportMiddleware extends PassportMiddleware(JwtStrategy) {
+
   async getAuthenticateOptions(): Promise<any> {
     return {};
   }

@@ -36,6 +36,8 @@ export class UserService {
     user.password = md5(user.password)
     // 根据信息区查找用户是否存在
     const cuser = await this.userModel.findOne(user)
+    console.log(cuser);
+    
     if (cuser) {
       return {
         code: 0,
